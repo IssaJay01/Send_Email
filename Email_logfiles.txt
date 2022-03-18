@@ -1,0 +1,26 @@
+Sender: medbc213@gmail.com 
+Receiver: medbc213@gmail.com 
+
+Subject: Chicken Booty 
+Body: lalalalalallalalalla 
+
+Date: 3/17/2022 7:40:10 PM 
+Status: Success! 
+------------------------------------
+3/17/2022 7:41:15 PM 
+Status: Error
+Error: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. 172.253.115.109:466
+------------------------------------
+3/17/2022 7:41:36 PM 
+Status: Error
+Error: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. 172.253.115.109:466
+------------------------------------
+Sender: medbc213@gmail.com 
+Receiver: medbc213@gmail.com 
+
+Subject: Chicken Sandwich 
+Body: lololololololololololol 
+
+Date: 3/17/2022 7:41:37 PM 
+Status: Success! 
+------------------------------------
