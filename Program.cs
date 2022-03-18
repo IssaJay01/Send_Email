@@ -45,58 +45,31 @@ namespace SendEmail
             };
 
             SmtpClient client = new SmtpClient();
-            //1st attempt
-            try
+            for (int i = 0; i < 3; i++)
             {
-                client.Connect("smtp.gmail.com", 466, true); //465 is port gmail 587 is outlook(i think)
-                client.Authenticate(from, password);
-                client.Send(message);
-
-                Console.WriteLine($"\nEmail successfully sent. {DateTime.Now.ToString("dddd, dd MMMM yyyy")}");
-                Send_Email.Logger.SuccessLog(from, to, subject, bodyText);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("\nEmail was not successfully sent, please check error logs for more information.");
-                Send_Email.Logger.ErrorLog(ex.Message);
-
-                //2nd attempt
                 try
                 {
-                    client.Connect("smtp.gmail.com", 466, true);
+                    client.Connect("smtp.gmail.com", 465, true); //SMTP is 465 and 587 but 587 is better...
                     client.Authenticate(from, password);
                     client.Send(message);
 
                     Console.WriteLine($"\nEmail successfully sent. {DateTime.Now.ToString("dddd, dd MMMM yyyy")}");
                     Send_Email.Logger.SuccessLog(from, to, subject, bodyText);
+
+                    i = 3; //setting i = 3 so that in the case of success this loop will automatically end
                 }
-                catch (Exception ex_1)
+                catch (Exception ex)
                 {
                     Console.WriteLine("\nEmail was not successfully sent, please check error logs for more information.");
-                    Send_Email.Logger.ErrorLog(ex_1.Message);
-
-                    //3rd and final attempt
-                    try
-                    {
-                        client.Connect("smtp.gmail.com", 465, true);
-                        client.Authenticate(from, password);
-                        client.Send(message);
-
-                        Console.WriteLine($"\nEmail successfully sent. {DateTime.Now.ToString("dddd, dd MMMM yyyy")}");
-                        Send_Email.Logger.SuccessLog(from, to, subject, bodyText);
-                    }
-                    catch (Exception ex_2)
-                    {
-                        Console.WriteLine("\nEmail was not successfully sent, please check error logs for more information.");
-                        Send_Email.Logger.ErrorLog(ex_2.Message);
-                    }
+                    Send_Email.Logger.ErrorLog(ex.Message);
+                }
+                finally
+                {
+                    client.Disconnect(true);
+                    client.Dispose();
                 }
             }
-            finally
-            {
-                client.Disconnect(true);
-                client.Dispose();
-            }
+            Console.ReadLine();
             Console.ReadLine();
         }//public static void SendMail
     }//class Program
